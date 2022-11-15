@@ -1,26 +1,3 @@
-<script context="module">
-    import axios from "$lib/api/index"
-
-    export async function load({params}) {
-        try {
-            const productCode = params.code;
-            const product = await axios.get(`/product/${productCode}`);
-            const oldProductCode = product.data.product.product_code;
-            console.log(product)
-            return {
-                props: {
-                    product,
-                    oldProductCode
-                }
-            }
-        } catch (e) {
-            return {
-                error: new Error('Can\'t fetch the food information')
-            }
-        }
-    }
-</script>
-
 <script>
     import NavbarSolo from "$lib/components/navbars/NavbarSolo.svelte";
     import ButtonBack from "$lib/components/buttons/ButtonBack.svelte";
@@ -28,6 +5,7 @@
     import uploadImageToAPI from "$lib/helper/uploadImageToAPI.js";
     import { notifs } from "$lib/stores/notificationStore";
     import NotificationContainer from "$lib/components/systemNotification/notification-container.svelte";
+    import axios from "$lib/api/index"
 
     const identifyType = (code) => {
         switch (code) {
@@ -45,8 +23,10 @@
         }
     }
 
-    export let product;
-    export let oldProductCode;
+    export let data
+
+    let product = data.product;
+    let oldProductCode = data.oldProductCode;
 
     let productDetails = product.data.product;
     let updating = false
@@ -256,13 +236,6 @@
     .pText {
         font-family: 'Montserrat', sans-serif;
         font-size: 20px;
-    }
-
-    .avatar {
-        display: flex;
-        aspect-ratio: 4 / 5 auto;
-        max-width: 250px;
-        margin-top: 1.5rem;
     }
 
     .btn-txt {

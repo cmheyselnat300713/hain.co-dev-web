@@ -1,5 +1,5 @@
 <script lang="ts">
-    export let link: string = "Database"
+    export let link = "Database"
 </script>
 
 <a href="{link}">

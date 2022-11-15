@@ -3,6 +3,15 @@
     import NavbarSolo from "$lib/components/navbars/NavbarSolo.svelte";
     import Discard from "$lib/components/buttons/Discard.svelte";
     import NotificationContainer from "$lib/components/systemNotification/notification-container.svelte";
+
+    export let data
+
+    let no = data.no
+    let agent = data.agent
+    let date = data.date
+    let description = data.description
+    let amount = data.amount
+    let type = data.type
 </script>
 
 <svelte:head>
@@ -13,67 +22,65 @@
 <NotificationContainer />
 
 <div class="container">
-    <div class="columns  pt-5 is-multiline has-text-centered">
+    <div class="columns pt-5 is-multiline has-text-centered">
         <div class="column is-4"> 
             <ButtonBack link="../Transaction"/>
         </div>
-        <div class="column is-4  ml-4">
+        <div class="column is-3 ml-4">
             <p class="text has-text-link">
-                0001
+                {no}
             </p>
             <p class="text has-text-link">
-                Transaction ID
+               Transaction No.
             </p>
         </div>
-        <div class="column is-3">
+        <!-- <div class="column is-4">
             <Discard link="../Transaction"/>
-        </div>
+        </div> -->
     </div>
 
     <div class="columns pt-5 is-multiline">
-        <div class="column is-1"></div>
+        <div class="column is-6">
+            <p class="text has-text-link">
+                Agent
+            </p>
+            <p class="text has-text-black">
+                {agent}
+            </p>
+        </div>
+        <div class="column is-6">
+            <p class="text has-text-link has has-text-right">
+                Date
+            </p>
+            <p class="text has-text-black has-text-right">
+                {date}
+            </p>
+        </div>
+        <div class="column is-12"></div>
+        <div class="column is-12"></div>
+        <div class="column is-12"></div>
         <div class="column is-4">
             <p class="text has-text-link">
-                Name
+                Process Type
             </p>
             <p class="text has-text-black">
-                Bantugan, Dea
+                {type}
             </p>
         </div>
-        <div class="column is-3"></div>
         <div class="column is-4">
-            <p class="text has-text-link">
-                Transaction Date
-            </p>
-            <p class="text has-text-black">
-                10/15/2022
-            </p>
-        </div>
-        <div class="column is-0"></div>
-        <div class="column is-2">
-            <p class="text has-text-link">
-                Type
-            </p>
-            <p class="text has-text-black">
-                Order
-            </p>
-        </div>
-        <div class="column is-2"></div>
-        <div class="column is-4">
-            <p class="text has-text-link">
-                Description
-            </p>
-            <p class="text has-text-black">
-                buy rice and adobo
-            </p>
-        </div>
-        <div class="column is-1"></div>
-        <div class="column is-2">
-            <p class="text has-text-link">
+            <p class="text has-text-link has-text-centered">
                 Amount
             </p>
-            <p class="text has-text-black">
-                40.00
+            <p class="text has-text-black has-text-centered">
+                {amount}
+            </p>
+        </div>
+        <div class="column is-4">
+            <p class="text has-text-link has-text-right">
+                Description
+            </p>
+            <p class="text has-text-black is-size-4 has-text-right">
+                {description}
             </p>
         </div>
     </div>

@@ -1,4 +1,4 @@
-<script lang="ts">
+<script>
     import NavbarWithSearch from "$lib/components/navbars/NavbarWithSearch.svelte";
     import ButtonBack from "$lib/components/buttons/ButtonBack.svelte";
     import TransactionTableRow from "$lib/components/tableRows/TransactionTableRow.svelte";
@@ -17,7 +17,7 @@
     const binderLink = "https://mybinder.org/v2/gh/rence-salaveria/reports-py/cffd3464bcbe54164a77eda53fa6113f1fac56b3?urlpath=lab%2Ftree%2Freports.ipynb"
 
     let recordNumber = 1;
-    const counter = (): number => {
+    const counter = number => {
         return recordNumber++;
     }
 
@@ -49,9 +49,10 @@
             </p>
         </div>
         <div class="column is-4 has-text-centered">
+            <!-- svelte-ignore security-anchor-rel-noreferrer -->
             <a href="{binderLink}" target="_blank">
                 <button class="button is-rounded is-link btn-txt">
-                    <img class="img1" src="../static/images/transactionIcon.png" alt="back"/>
+                    <img class="img1" src="images/transactionIcon.png" alt="back"/>
                     <p class="ml-3">
                         Open Records
                     </p>
@@ -77,13 +78,13 @@
                 <TableLoadingScreen/>
             {:then audit}
                 {#each audit as info}
-                    <TransactionTableRow
-                        id={counter()}
-                        agent={info.transaction_agent}
-                        description={info.transaction_description}
-                        amount={info.transaction_amount}
-                        type={identifyType(info.transaction_type)}
-                        date={info.transaction_date}/>
+                <TransactionTableRow
+                    id={counter()}
+                    agent={info.transaction_agent}
+                    description={info.transaction_description}
+                    amount={info.transaction_amount}
+                    type={identifyType(info.transaction_type)}
+                    date={info.transaction_date}/>
                 {/each}
             {:catch err}
                 <p>{err.message}</p>

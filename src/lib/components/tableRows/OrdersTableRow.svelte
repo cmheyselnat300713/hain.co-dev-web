@@ -1,13 +1,13 @@
-<script lang="ts">
+<script>
     import axios from '$lib/api/index';
     import { notifs } from '$lib/stores/notificationStore';
-    export let productCode: string;
-    export let customerEmail: string;
-    export let orderRequest: string;
-    export let orderDate: Date;
-    export let staffUsername: string;
-    export let orderStatus: number;
-    export let orderNumber: number;
+    export let productCode
+    export let customerEmail
+    export let orderRequest
+    export let orderDate
+    export let staffUsername
+    export let orderStatus
+    export let orderNumber
 
     let newStatus;
     let updating = false

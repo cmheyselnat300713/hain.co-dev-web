@@ -1,5 +1,7 @@
-<script lang="ts">
+<script>
     import moment from "moment/moment.js";
+    import { goto } from "$app/navigation";
+
     export let id;
     export let agent;
     export let description;
@@ -7,11 +9,12 @@
     export let amount;
     export let date;
     const oldTimeString = moment(date).format("MM-DD-YYYY h:mma");
-    const adjustedDate = moment(oldTimeString).add(8, "hours").format("MM-DD-YYYY h:mma");
 </script>
 
 <tbody>
-    <tr class="text is-clickable">
+    <tr on:click={() => {
+        goto(`Transaction/TransactionInfo?no=${id}&agent=${agent}&desc=${description}&amount=${amount}&type=${type}&date=${oldTimeString}`)
+    }} class="text is-clickable">
         <th>{id}</th>
         <td>{agent}</td>
         <td>{description}</td>

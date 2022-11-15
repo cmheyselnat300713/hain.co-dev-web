@@ -4,7 +4,7 @@
 
 <a href="{link}">
     <button class="btn-txt button is-danger is-rounded">
-        <img class="discard" src="../static/images/delete.png" alt="back"/>
+        <img class="discard" src="/images/delete.png" alt="back"/>
         <p class="ml-3">
             Discard
         </p>

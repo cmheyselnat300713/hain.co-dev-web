@@ -1,26 +1,3 @@
-<script context="module">
-    import axios from "$lib/api/index"
-
-    export async function load({params}) {
-        try {
-            const emailAddress = params.username;
-            const customer = await axios.get(`/customer/auth/${emailAddress}`);
-            const oldEmail = customer.data.customerDetails.customer_email
-            console.log(customer)
-            return {
-                props: {
-                    customer,
-                    oldEmail
-                }
-            }
-        } catch (e) {
-            return {
-                error: new Error('Can\'t fetch the customer information')
-            }
-        }
-    }
-</script>
-
 <script>
     import ButtonBack from "$lib/components/buttons/ButtonBack.svelte";
     import NavbarSolo from "$lib/components/navbars/NavbarSolo.svelte";
@@ -28,12 +5,14 @@
     import { notifs } from "$lib/stores/notificationStore";
     import NotificationContainer from "$lib/components/systemNotification/notification-container.svelte";
     import validators from "$lib/validators";
+    import axios from "$lib/api/index";
 
-    export let customer;
-    export let oldEmail;
+    export let data
+    let customer = data.customer;
+    let oldEmail = data.oldEmail;
     let updating = false
 
-    let customerDetails = customer.data.customerDetails;
+    let customerDetails = customer;
 
     let newCustomer = {
         customerFirstName: null,

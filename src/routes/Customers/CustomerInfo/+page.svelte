@@ -1,4 +1,6 @@
 <script>
+// @ts-nocheck
+
     import ButtonBack from "$lib/components/buttons/ButtonBack.svelte";
     import ButtonEdit from "$lib/components/buttons/ButtonEdit.svelte";
     import ButtonSwitch from "$lib/components/buttons/ButtonSwitch.svelte";

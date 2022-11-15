@@ -1,4 +1,5 @@
-<script lang="ts">
+<script>
+    //@ts-nocheck
     import ButtonBack from "$lib/components/buttons/ButtonBack.svelte";
     import NavbarWithSearch from "$lib/components/navbars/NavbarWithSearch.svelte";
     import TableLoadingScreen from "$lib/components/otherComponents/TableLoadingScreen.svelte"
@@ -8,8 +9,6 @@
     import AllOrdersTableRow from "$lib/components/tableRows/AllOrdersTableRow.svelte";
     import NotificationContainer from "$lib/components/systemNotification/notification-container.svelte";
 
-    export let link: string = " ";
-
     onMount(async () => {
         if (!localStorage.getItem("admin")) {
             await goto("/");
@@ -17,11 +16,11 @@
     })
 
     let orderNumber = 1;
-    const counter = (): number => (
+    const counter = () => (
         orderNumber++
     )
 
-    const identifyType = (code: number): string => {
+    const identifyType = (code) => {
         switch(code) {
             case 1:
                 return "Incoming"
@@ -40,7 +39,7 @@
         }
     }
 
-    const identifyPaymentMethod = (code: number): string => {
+    const identifyPaymentMethod = (code) => {
         switch(code) {
             case 1:
                 return "CASH"
@@ -107,11 +106,6 @@
     }
 
     table {
-        font-family: 'Montserrat', sans-serif;
-        font-size: 20px;
-    }
-
-    .btn-txt {
         font-family: 'Montserrat', sans-serif;
         font-size: 20px;
     }

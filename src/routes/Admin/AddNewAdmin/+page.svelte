@@ -3,7 +3,6 @@
     import NavbarSolo from "$lib/components/navbars/NavbarSolo.svelte";
     import ButtonBack from "$lib/components/buttons/ButtonBack.svelte";
     import axios from "$lib/api/index";
-    import ButtonSwitch from "$lib/components/buttons/ButtonSwitch.svelte";
     import {goto} from "$app/navigation";
     import { notifs } from "$lib/stores/notificationStore";
     import NotificationContainer from "$lib/components/systemNotification/notification-container.svelte";

@@ -1,13 +1,13 @@
 <script lang="ts">
-    import Homepage from "./Homepage.svelte";
+    import Homepage from "./Homepage/+page.svelte";
     import LoadingScreen from "$lib/components/otherComponents/LoadingScreen.svelte"
     import {onMount} from 'svelte';
     import NotificationContainer from "$lib/components/systemNotification/notification-container.svelte";
 
-    let isLoaded: boolean = false
+    let isLoaded = false
 
     onMount(async () => {
-        setTimeout(() => isLoaded = true, 5000)
+        setTimeout(() => isLoaded = true, 1000)
     })
 </script>
 

@@ -2,10 +2,10 @@
   "name": "hain.co-dev",
   "version": "0.0.1",
   "scripts": {
-    "dev": "svelte-kit dev",
-    "build": "svelte-kit build",
-    "package": "svelte-kit package",
-    "preview": "svelte-kit preview",
+    "dev": "vite dev",
+    "build": "vite build",
+    "package": "vite package",
+    "preview": "vite preview",
     "check": "svelte-check --tsconfig ./tsconfig.json",
     "check:watch": "svelte-check --tsconfig ./tsconfig.json --watch"
   },
@@ -20,7 +20,8 @@
     "svelte-loading-spinners": "^0.1.7",
     "svelte-preprocess": "^4.10.1",
     "tslib": "^2.3.1",
-    "typescript": "~4.5.4"
+    "typescript": "~4.5.4",
+    "vite": "^3.2.3"
   },
   "type": "module",
   "dependencies": {

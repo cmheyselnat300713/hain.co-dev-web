@@ -1,6 +1,6 @@
-<script lang="ts">
-    export let name: string;
-    export let sub: string = " ";
+<script>
+    export let name
+    export let sub
     export let link = " ";
     export let imagePath;
     export let entries = " ";

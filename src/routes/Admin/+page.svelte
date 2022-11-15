@@ -1,4 +1,5 @@
-<script lang="ts">
+<script>
+    //@ts-nocheck
     import NavbarSolo from "$lib/components/navbars/NavbarSolo.svelte";
     import Card from "$lib/components/otherComponents/Card.svelte";
     import ButtonBack from "$lib/components/buttons/ButtonBack.svelte";
@@ -16,7 +17,7 @@
     })
 
     let adminNumber = 1;
-    const counter = (): number => {
+    const counter = () => {
         return adminNumber++;
     }
 </script>
@@ -47,7 +48,7 @@
                 <Card
                     name={info.admin_username}
                     sub={info.admin_full_name}
-                    imagePath="../static/images/adminIcon.png"
+                    imagePath="images/adminIcon.png"
                     link="Admin/{info.admin_username}"/>
             {/each}
         {:catch err}

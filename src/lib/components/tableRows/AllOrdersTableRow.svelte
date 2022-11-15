@@ -1,11 +1,11 @@
 <script lang="ts">
-    export let productCode      : string
-    export let customerEmail    : string
-    export let orderRequest     : string
-    export let orderDate        : Date
-    export let staffUsername    : string
-    export let orderStatus      : number
-    export let orderNumber      : number
+    export let productCode    
+    export let customerEmail  
+    export let orderRequest   
+    export let orderDate      
+    export let staffUsername  
+    export let orderStatus    
+    export let orderNumber    
 </script>
 
 <tbody>

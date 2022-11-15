@@ -4,7 +4,7 @@
     import ButtonBack from "$lib/components/buttons/ButtonBack.svelte";
     import axios from "$lib/api/index";
     import {goto} from "$app/navigation";
-    import uploadImageToAPI from "../../lib/helper/uploadImageToAPI.js";
+    import uploadImageToAPI from "../../../lib/helper/uploadImageToAPI.js";
     import { notifs } from "$lib/stores/notificationStore";
     import NotificationContainer from "$lib/components/systemNotification/notification-container.svelte";
 
@@ -183,13 +183,6 @@
     .pText {
         font-family: 'Montserrat', sans-serif;
         font-size: 20px;
-    }
-
-    .avatar {
-        display: flex;
-        aspect-ratio: 4 / 5 auto;
-        max-width: 250px;
-        margin-top: 1.5rem;
     }
 
     .btn-txt {

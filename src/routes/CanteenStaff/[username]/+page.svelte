@@ -1,39 +1,19 @@
-<script context="module">
-    import axios from "$lib/api/index"
-
-    export async function load({fetch, params}) {
-        try {
-            const username = params.username;
-            const canteenStaff = await axios.get(`/staff/auth/${username}`);
-            const oldUsername = canteenStaff.data.staffDetails.staff_username;
-            console.log(canteenStaff)
-            return {
-                props: {
-                    canteenStaff,
-                    oldUsername
-                }
-            }
-        } catch (e) {
-            return {
-                error: new Error('Can\'t fetch the canteen staff')
-            }
-        }
-    }
-</script>
-
-<script lang="ts">
+<script>
     import ButtonBack from "$lib/components/buttons/ButtonBack.svelte";
     import NavbarSolo from "$lib/components/navbars/NavbarSolo.svelte";
     import {goto} from "$app/navigation";
     import { notifs } from "$lib/stores/notificationStore";
     import validators from "$lib/validators";
     import NotificationContainer from "$lib/components/systemNotification/notification-container.svelte";
+    import axios from "$lib/api/index";
 
-    export let canteenStaff;
-    export let oldUsername;
+    export let data
+
+    let canteenStaff = data.canteenStaff;
+    let oldUsername = data.oldUsername;
     let updating = false
 
-    let canteenStaffDetails = canteenStaff.data.staffDetails;
+    let canteenStaffDetails = canteenStaff;
 
     let newStaff = {
         staffFullName: null,

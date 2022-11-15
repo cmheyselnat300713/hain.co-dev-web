@@ -1,4 +1,4 @@
-<script lang="ts">
+<script>
     import ButtonBack from "$lib/components/buttons/ButtonBack.svelte";
     import NavbarWithSearch from "$lib/components/navbars/NavbarWithSearch.svelte";
     import OrdersTableRow from "$lib/components/tableRows/OrdersTableRow.svelte";
@@ -7,37 +7,13 @@
     import {onMount} from "svelte";
     import {goto} from "$app/navigation";
     import NotificationContainer from "$lib/components/systemNotification/notification-container.svelte";
-
-    const link: string = " ";
-
     onMount(async () => {
         if (!localStorage.getItem("admin")) {
             await goto("/");
         }
     })
 
-    let orderNumber = 1;
-    const counter = (): number => (
-        orderNumber++
-    )
-
-    const identifyType = (code: number): string => {
-        switch(code) {
-            case 1:
-                return "Incoming"
-
-            case 2:
-                return "Unfulfilled"
-
-            case 3:
-                return "Processing"
-
-            case 4:
-                return "Fulfilled"
-        }
-    }
-
-    const identifyPaymentMethod = (code: number): string => {
+    const identifyPaymentMethod = (code) => {
         switch(code) {
             case 1:
                 return "CASH"

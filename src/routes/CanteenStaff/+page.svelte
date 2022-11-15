@@ -1,13 +1,13 @@
-<script lang="ts">
+<script>
+    //@ts-nocheck
     import NavbarWithSearch from "$lib/components/navbars/NavbarWithSearch.svelte";
     import ButtonBack from "$lib/components/buttons/ButtonBack.svelte";
     import ButtonAddRecord from "$lib/components/buttons/ButtonAddRecord.svelte";
-    import FoodTableRow from "$lib/components/tableRows/FoodTableRow.svelte";
-    import {products} from "$lib/stores/productStore";
+    import CanteenStaffTableRow from "$lib/components/tableRows/CanteenStaffTableRow.svelte";
+    import {staffs} from "$lib/stores/staffStore";
     import TableLoadingScreen from "$lib/components/otherComponents/TableLoadingScreen.svelte";
     import {onMount} from "svelte";
     import {goto} from "$app/navigation";
-    import NavbarSolo from "$lib/components/navbars/NavbarSolo.svelte";
     import NotificationContainer from "$lib/components/systemNotification/notification-container.svelte";
 
     onMount(async () => {
@@ -16,29 +16,27 @@
         }
     })
 
-    let itemNumber = 1;
-    const counter = (): number => {
-        return itemNumber++;
+    let staffNumber = 1;
+    const counter = () => {
+        return staffNumber++;
     }
-    const identifyType = (code: number): string => {
-        switch (code) {
+
+    const identifyType = (code) => {
+        switch(code) {
             case 1:
-                return "Breakfast"
+                return "Chef"
 
             case 2:
-                return "Lunch"
+                return "Cashier"
 
             case 3:
-                return "Dessert"
-
-            case 4:
-                return "Extra"
+                return "Server"
         }
     }
 </script>
-<NavbarSolo/>
-<NotificationContainer />
 
+<NavbarWithSearch />
+<NotificationContainer />
 <div class="container">
     <div class="columns has-text-centered pt-5">
         <div class="column is-4">
@@ -46,41 +44,38 @@
         </div>
         <div class="column is-4">
             <p class="text has-text-link has-text-weight-bold">
-                Food
+                Canteen Staffs
             </p>
         </div>
         <div class="column is-3 ml-6">
-            <ButtonAddRecord link="Food/AddNewFood"/>
+            <ButtonAddRecord link="CanteenStaff/AddNewCanteenStaff" />
         </div>
     </div>
 
     <div class="column is-10 is-offset-1 pl-5 pt-0">
         <table class="table is-hoverable is-fullwidth">
             <thead>
-            <tr>
-                <th>No.</th>
-                <th>Product Name</th>
-                <th>Price</th>
-                <th>Type</th>
-                <th>Product Code</th>
-                <th></th>
-            </tr>
+                <tr>
+                    <th>No.</th>
+                    <th>Name</th>
+                    <th>Position</th>
+                    <th>Contact No.</th>
+                    <th></th>
+                </tr>
             </thead>
-            <!-- Temporary placeholders:
-                    Product name - name
-                    Price - phone
-                    Type - username -->
-            {#await $products}
+            {#await $staffs}
                 <TableLoadingScreen/>
-            {:then food}
-                {#each food as product}
-                    <FoodTableRow
+            {:then staff}
+                {#each staff as info}
+                    <!--TODO add property for the link for the individual staff
+                        TODO add property to access the object
+                    -->
+                    <CanteenStaffTableRow
                         num={counter()}
-                        productName={product.product_name}
-                        price={product.product_price}
-                        type={identifyType(product.product_type)}
-                        code={product.product_code}
-                        link={`/Food/${product.product_code}`}/>
+                        name={info.staff_full_name}
+                        position={identifyType(info.staff_position)}
+                        contactNum={info.staff_contact_number}
+                        link={`/CanteenStaff/${info.staff_username}`}/>
                 {/each}
             {:catch err}
                 <p>{err.message}</p>
@@ -88,7 +83,6 @@
         </table>
     </div>
 </div>
-
 
 <style>
     .text {

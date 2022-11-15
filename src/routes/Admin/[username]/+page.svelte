@@ -1,26 +1,3 @@
-<script context="module">
-    import axios from "$lib/api/index"
-
-    export async function load({fetch, params}) {
-        try {
-            const username = params.username;
-            const admin = await axios.get(`/admin/auth/${username}`);
-            // const oldUsername = admin.data.adminDetails.adminUsername
-            console.log(admin)
-            return {
-                props: {
-                    admin,
-                    oldUsername: username
-                }
-            }
-        } catch (e) {
-            return {
-                error: new Error('Can\'t fetch the admin')
-            }
-        }
-    }
-</script>
-
 <script>
     import ButtonBack from "$lib/components/buttons/ButtonBack.svelte";
     import NavbarSolo from "$lib/components/navbars/NavbarSolo.svelte";
@@ -28,12 +5,14 @@
     import NotificationContainer from "$lib/components/systemNotification/notification-container.svelte";
     import { notifs } from "$lib/stores/notificationStore";
     import validators from "$lib/validators";
+    import axios from "$lib/api/index";
 
-    export let admin;
-    export let oldUsername;
+    export let data
+    let admin = data.admin;
+    let oldUsername = data.oldUsername;
     let updating = false
 
-    let adminDetails = admin.data.adminDetails;
+    let adminDetails = admin;
 
     let newAdmin = {
         adminFullName: null,
