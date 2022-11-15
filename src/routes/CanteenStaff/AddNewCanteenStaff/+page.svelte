@@ -83,7 +83,7 @@
             adding = true
             // console.log(staff)
             let response = await axios.post('/staff/createStaff', staff)
-            if(response.status == 200) {
+            if(response.status == 200 || response.status == 201) {
                 adding = false
                 $notifs = [...$notifs, {
                     msg: `New canteen staff: ${staff.staffFullName}`,
@@ -94,7 +94,7 @@
             }else{
                 adding = false
                 $notifs = [...$notifs, {
-                    msg: `Error in adding new staff`,
+                    msg: `Error in adding new staff but with a response status of ${response.status}`,
                     type: 'error',
                     id: `${(Math.random() * 99) + 1}${new Date().getTime()}`
                 }]

@@ -47,7 +47,7 @@
         try {
             adding = true
             let response = await axios.post('/admin/createAdmin', admin)
-            if(response.status == 200) {
+            if(response.status == 200 || response.status == 201) {
                 adding = false
                 $notifs = [...$notifs, {
                     msg: `New canteen admin: ${admin.adminFullName}`,
@@ -58,7 +58,7 @@
             }else{
                 adding = false
                 $notifs = [...$notifs, {
-                    msg: 'Error adding a new admin',
+                    msg: `Error adding a new admin but with a response status of ${response.status}`,
                     type: 'error',
                     id: `${Math.random() * 99}${new Date().getTime()}`
                 }]

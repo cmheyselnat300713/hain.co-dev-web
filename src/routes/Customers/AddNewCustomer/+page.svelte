@@ -90,7 +90,7 @@
             adding = true
             let response = await axios.post('/customer/createCustomer', customer);
             // console.log(response);
-            if(response.status == 200) {
+            if(response.status == 200 || response.status == 201) {
                 adding = false
                 $notifs = [...$notifs, {
                     msg: `New canteen customer: ${customer.customerFirstName} ${customer.customerLastName} (${customer.customerEmail})`,
@@ -101,7 +101,7 @@
             }else{
                 adding = false
                 $notifs = [...$notifs, {
-                    msg: `Error in adding a new customer`,
+                    msg: `Error in adding a new customer but with a response status of ${response.status}`,
                     type: 'error',
                     id: `${Math.random() * 99}${new Date().getTime()}`
                 }]

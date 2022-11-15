@@ -61,7 +61,7 @@
             product.productImage = await uploadImageToAPI(selectedImage);
             // console.log(product.productImage);
             let response = await axios.post('/product/createProduct', product)
-            if(response.status == 200) {
+            if(response.status == 200 || response.status == 201) {
                 adding = false
                 $notifs = [...$notifs, {
                     msg: `New canteen product: ${product.productName} (${product.productCode})`,
@@ -72,7 +72,7 @@
             }else{
                 adding = false
                 $notifs = [...$notifs, {
-                    msg: `Error in adding new product`,
+                    msg: `Error in adding new product but has a response status of ${response.status}`,
                     type: 'error',
                     id: `${Math.random() * 99}${new Date().getTime()}`
                 }]
