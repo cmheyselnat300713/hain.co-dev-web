@@ -13,7 +13,7 @@
     <tr class="text is-clickable">
         <th>{num}</th>
         <td>{productName}</td>
-        <td>{price}</td>
+        <td>{parseFloat(price).toFixed(2)}</td>
         <td>{type}</td>
         <td>{code}</td>
         <td><ButtonEditTable link={link}/></td>

@@ -5,23 +5,9 @@
 
 <nav class="navbar has-background-link">
     <div class="navbar-start ml-6">
-        <p class="title navbar-item has-text-weight-light has-text-white">
+        <a href="/Database"><p class="title is-1 has-text-white has-text-weight-light">
             Hain.co Admin
-        </p>
-    </div>
-    <div class="navbar-end mr-6 buttons">
-        <div class="navbar-item">
-            <div class="field is-grouped">
-                <p class="control is-expanded">
-                    <input class="input is-rounded" type="text" placeholder="Search">
-                </p>
-                <p class="control">
-                    <a class="text button has-text-link is-rounded" href="/">
-                        Search
-                    </a>
-                </p>
-            </div>
-        </div>
+        </p></a>
     </div>
 </nav>
 

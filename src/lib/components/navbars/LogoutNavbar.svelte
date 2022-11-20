@@ -13,9 +13,9 @@
 
 <nav class="navbar has-background-link">
     <div class="navbar-start ml-6">
-        <p class="title navbar-item has-text-weight-light has-text-white">
+        <a href="/Database"><p class="title is-1 has-text-white has-text-weight-light">
             Hain.co Admin
-        </p>
+        </p></a>
     </div>
     <div class="navbar-end mr-6 buttons">
         <div class="navbar-item">
