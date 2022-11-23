@@ -6,6 +6,7 @@
     import NotificationContainer from "$lib/components/systemNotification/notification-container.svelte";
     import validators from "$lib/validators";
     import axios from "$lib/api/index";
+  import { onMount } from "svelte";
 
     export let data
     let customer = data.customer;
@@ -24,23 +25,21 @@
         customerIsActive: true
     };
 
-    const isEmailValid = (email) => {
-        const emailRegexp = new RegExp(
-            /^[a-zA-Z0-9][\~\!\$\%\^\&\*_\=\+\}\{\'\?\-\.\\\#\/\`\|]{0,1}([a-zA-Z0-9][\~\!\$\%\^\&\*_\=\+\}\{\'\?\-\.\\\#\/\`\|]{0,1})*[a-zA-Z0-9]@[a-zA-Z0-9][-\.]{0,1}([a-zA-Z][-\.]{0,1})*[a-zA-Z0-9]\.[a-zA-Z0-9]{1,}([\.\-]{0,1}[a-zA-Z]){0,}[a-zA-Z0-9]{0,}$/i
-        )
-        return emailRegexp.test(email)
-    }
-
-    const isPassValid = (pass) => {
-        const passRegexp = new RegExp(/([a-zA-z0-9!@#$%^&*(),.;'\\_\\]{6,})/)
-        return passRegexp.test(pass)
-    }
+    onMount(() => {
+        newCustomer.customerEmail = customerDetails.customer_email
+        newCustomer.customerFirstName = customerDetails.customer_first_name
+        newCustomer.customerGcashName = customerDetails.customer_gcash_name
+        newCustomer.customerGcashNumber = customerDetails.customer_gcash_number
+        newCustomer.customerIsActive = customerDetails.customer_is_active
+        newCustomer.customerLastName = customerDetails.customer_last_name
+        newCustomer.customerPassword = customerDetails.customer_password
+    })
 
     const updateCustomerToDatabase = async () => {
         let msg = ''
         let errors = 0
         Object.keys(newCustomer).map(prop => {
-            if(!newCustomer[prop]) {
+            if(!newCustomer[prop] && prop !== 'customerIsActive') {
                 msg += !errors ? `${prop.split('customer').join('')}` : `, ${prop.split('customer').join('')}`
                 errors++
             }
@@ -103,7 +102,7 @@
 
         try {
             updating = true
-            console.log(newCustomer)
+            console.log(newCustomer.customerIsActive)
             let response = await axios.put(`/customer/updateCustomer/${oldEmail}`, newCustomer)
             if(response.status == 200) {
                 updating = false
@@ -165,37 +164,37 @@
         {:then customer}
             <div class="column is-3 is-offset-2">
                 <p class="pText has-text-link ml-4 mb-1">
-                    <span>*</span> Current First Name: {customerDetails.customer_first_name}
+                    <span>*</span>  First Name: {customerDetails.customer_first_name}
                 </p>
                 <input class="pText input is-rounded" type="text" bind:value={newCustomer.customerFirstName}/>
             </div>
             <div class="column is-3 is-offset-2">
                 <p class="pText has-text-link ml-4 mb-1">
-                    <span>*</span> Current Last Name: {customerDetails.customer_last_name}
+                    <span>*</span>  Last Name: {customerDetails.customer_last_name}
                 </p>
                 <input class="pText input is-rounded" type="text" bind:value={newCustomer.customerLastName}/>
             </div>
             <div class="column is-3 is-offset-2">
                 <p class="pText has-text-link ml-4 mb-1">
-                    <span>*</span> Current Email: {customerDetails.customer_email}
+                    <span>*</span>  Email: {customerDetails.customer_email}
                 </p>
                 <input class="pText input is-rounded" type="text" bind:value={newCustomer.customerEmail}/>
             </div>
             <div class="column is-3 is-offset-2">
                 <p class="pText has-text-link ml-4 mb-1">
-                    <span>*</span> Current Password: {customerDetails.customer_password}
+                    <span>*</span>  Password: {customerDetails.customer_password}
                 </p>
                 <input class="pText input is-rounded" type="password" bind:value={newCustomer.customerPassword}/>
             </div>
             <div class="column is-3 is-offset-2">
                 <p class="pText has-text-link ml-4 mb-1">
-                    <span>*</span> Current Gcash Name: {customerDetails.customer_gcash_name}
+                    <span>*</span>  Gcash Name: {customerDetails.customer_gcash_name}
                 </p>
                 <input class="pText input is-rounded" type="text" bind:value={newCustomer.customerGcashName}/>
             </div>
             <div class="column is-3 is-offset-2">
                 <p class="pText has-text-link ml-4 mb-1">
-                    <span>*</span> Current Gcash Number: {customerDetails.customer_gcash_number}
+                    <span>*</span>  Gcash Number: {customerDetails.customer_gcash_number}
                 </p>
                 <input class="pText input is-rounded" type="text" bind:value={newCustomer.customerGcashNumber}/>
             </div>
@@ -240,7 +239,7 @@
 
     .pText {
         font-family: 'Montserrat', sans-serif;
-        font-size: 20px;
+        font-size: 17px;
     }
 
     .btn-txt {
