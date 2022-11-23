@@ -6,6 +6,7 @@
     import { notifs } from "$lib/stores/notificationStore";
     import validators from "$lib/validators";
     import axios from "$lib/api/index";
+  import { onMount } from "svelte";
 
     export let data
     let admin = data.admin;
@@ -21,6 +22,13 @@
         adminIsSuperadmin: true,
         adminIsActive: true,
     }
+
+    onMount(() => {
+        newAdmin.adminFullName = adminDetails.admin_full_name
+        newAdmin.adminIsActive = adminDetails.admin_is_active
+        newAdmin.adminPassword = adminDetails.admin_password
+        newAdmin.adminUsername = adminDetails.admin_username
+    })
 
     const updateAdminToDatabase = async () => {
         let msg = ''
@@ -118,19 +126,19 @@
             <!-- TODO: yung is active pa na checkbox ilagay -->
             <div class="column is-3 is-offset-2">
                 <p class="pText has-text-link ml-4 mb-1">
-                    <span>*</span> Current Name: {adminDetails.admin_full_name}
+                    <span>*</span>  Name: {adminDetails.admin_full_name}
                 </p>
                 <input class="pText input is-rounded" type="text" bind:value={newAdmin.adminFullName}/>
             </div>
             <div class="column is-3 is-offset-2">
                 <p class="pText has-text-link ml-4 mb-1">
-                    <span>*</span> Current Username: {adminDetails.admin_username}
+                    <span>*</span>  Username: {adminDetails.admin_username}
                 </p>
                 <input class="pText input is-rounded" type="text" bind:value={newAdmin.adminUsername}/>
             </div>
             <div class="column is-3 is-offset-2">
                 <p class="pText has-text-link ml-4 mb-1">
-                    <span>*</span> Current Password: {adminDetails.admin_password}
+                    <span>*</span>  Password: {adminDetails.admin_password}
                 </p>
                 <input class="pText input is-rounded" type="password" bind:value={newAdmin.adminPassword}/>
             </div>

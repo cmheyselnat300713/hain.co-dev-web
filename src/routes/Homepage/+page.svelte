@@ -80,7 +80,13 @@
             console.log(e);
         }
     }
+
+    const keyDown = async e => {
+        if(e.keyCode == 13) await addToLocalStorage()
+    }
 </script>
+
+<svelte:window on:keydown={keyDown} />
 
 {#if loading}
 <LoadingScreen infinite={true}/>

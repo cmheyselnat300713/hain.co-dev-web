@@ -6,6 +6,7 @@
     import { notifs } from "$lib/stores/notificationStore";
     import NotificationContainer from "$lib/components/systemNotification/notification-container.svelte";
     import axios from "$lib/api/index"
+  import { onMount } from "svelte";
 
     const identifyType = (code) => {
         switch (code) {
@@ -48,6 +49,15 @@
         {value: 3, type: "DESSERT"},
         {value: 4, type: "EXTRA"}
     ]
+
+    onMount(() => {
+        newProduct.productDescription = productDetails.product_description
+        newProduct.productImage = productDetails.product_image_link
+        newProduct.productIsActive = productDetails.product_is_active
+        newProduct.productName = productDetails.product_name
+        newProduct.productPrice = productDetails.product_price
+        newProduct.productType = productDetails.product_type
+    })
 
     const updateProductToDatabase = async () => {
         let msg = 'Product '
@@ -149,21 +159,21 @@
 
             <div class="column is-3 is-offset-2">
                 <p class="pText has-text-link ml-4 mb-1">
-                    <span>*</span> Current Name: {productDetails.product_name}
+                    <span>*</span>  Name: {productDetails.product_name}
                 </p>
                 <input class="pText input is-rounded" type="text" bind:value={newProduct.productName}/>
             </div>
             <!-- TODO number validation -->
             <div class="column is-3 is-offset-2">
                 <p class="pText has-text-link ml-4 mb-1">
-                    <span>*</span> Current Price: {productDetails.product_price}
+                    <span>*</span>  Price: {productDetails.product_price}
                 </p>
                 <input class="pText input is-rounded" type="number" bind:value={newProduct.productPrice}/>
             </div>
             <!-- TODO number validation -->
             <div class="column is-3 is-offset-2">
                 <p class="pText has-text-link ml-4 mb-1">
-                    <span>*</span> Current Type: {identifyType(productDetails.product_type)}
+                    <span>*</span>  Type: {identifyType(productDetails.product_type)}
                 </p>
                 <select bind:value={newProduct.productType} class="pText input is-rounded">
                     {#each types as pos}
@@ -176,7 +186,7 @@
             <!-- TODO make sure unique -->
             <div class="column is-3 is-offset-2">
                 <p class="pText has-text-link ml-4 mb-1">
-                    <span>*</span> Current Code: {oldProductCode}
+                    <span>*</span>  Code: {oldProductCode}
                     <br>
                     <span class="note">You cannot modify product code once set</span>
                 </p>
@@ -184,13 +194,13 @@
             </div>
             <div class="column is-3 is-offset-2">
                 <p class="pText has-text-link ml-4 mb-1">
-                    <span>*</span> Current Description: {productDetails.product_description}
+                    <span>*</span>  Description: {productDetails.product_description}
                 </p>
                 <textarea class="pText input tall-textarea" bind:value={newProduct.productDescription}></textarea>
             </div>
             <div class="column is-3 is-offset-2">
                 <p class="pText has-text-link ml-4 mb-2">
-                    <span>*</span> Current Product Image:
+                    <span>*</span>  Product Image:
                 </p>
                 <img src={productDetails.product_image_link} alt="">
                 <input class="pText input is-rounded mb-5"

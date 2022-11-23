@@ -6,6 +6,7 @@
     import validators from "$lib/validators";
     import NotificationContainer from "$lib/components/systemNotification/notification-container.svelte";
     import axios from "$lib/api/index";
+  import { onMount } from "svelte";
 
     export let data
 
@@ -129,6 +130,14 @@
             console.log(e);
         }
     }
+
+    onMount(() => {
+        newStaff.staffContactNumber = canteenStaffDetails.staff_contact_number
+        newStaff.staffFullName = canteenStaffDetails.staff_full_name
+        newStaff.staffPassword = canteenStaffDetails.staff_password
+        newStaff.staffPosition = canteenStaffDetails.staff_position
+        newStaff.staffUsername = canteenStaffDetails.staff_username
+    })
 </script>
 
 <NavbarSolo/>
@@ -163,13 +172,13 @@
             <!-- TODO switch to bound inputs -->
             <div class="column is-3 is-offset-2">
                 <p class="pText has-text-link ml-4 mb-1">
-                    <span>*</span> Current Name: {canteenStaffDetails.staff_full_name}
+                    <span>*</span>  Name: {canteenStaffDetails.staff_full_name}
                 </p>
                 <input class="pText input is-rounded" type="text" bind:value={newStaff.staffFullName}/>
             </div>
             <div class="column is-3 is-offset-2">
                 <p class="pText has-text-link ml-4 mb-1">
-                    <span>*</span> Current Position: {identifyType(canteenStaffDetails.staff_position)}
+                    <span>*</span>  Position: {identifyType(canteenStaffDetails.staff_position)}
                 </p>
                 <select bind:value={newStaff.staffPosition} class="pText input is-rounded">
                     {#each positions as pos}
@@ -181,19 +190,19 @@
             </div>
             <div class="column is-3 is-offset-2">
                 <p class="pText has-text-link ml-4 mb-1">
-                    <span>*</span> Current Contact Number: {canteenStaffDetails.staff_contact_number}
+                    <span>*</span>  Contact Number: {canteenStaffDetails.staff_contact_number}
                 </p>
                 <input class="pText input is-rounded" type="text" bind:value={newStaff.staffContactNumber}/>
             </div>
             <div class="column is-3 is-offset-2">
                 <p class="pText has-text-link ml-4 mb-1">
-                    <span>*</span> Current Username: {canteenStaffDetails.staff_username}
+                    <span>*</span>  Username: {canteenStaffDetails.staff_username}
                 </p>
                 <input class="pText input is-rounded" type="text" bind:value={newStaff.staffUsername}/>
             </div>
             <div class="column is-3 is-offset-2">
                 <p class="pText has-text-link ml-4 mb-1">
-                    <span>*</span> Current Password: {canteenStaffDetails.staff_password}
+                    <span>*</span>  Password: {canteenStaffDetails.staff_password}
                 </p>
                 <input class="pText input is-rounded" type="password" bind:value={newStaff.staffPassword}/>
             </div>
@@ -205,7 +214,7 @@
                 {#await canteenStaff}
                     Waiting data
                 {:then staff}
-                    <div class="field">
+                    <!-- <div class="field">
                         {#if canteenStaffDetails.staff_is_active}
                             <div class="pText has-text-centered"> <span>*</span> Staff Currently Active</div>
                         {:else}
@@ -221,7 +230,7 @@
                         {:else}
                             <label for="switchLarge switchColorDefault switchRoundedDefault">Inactive</label>
                         {/if}
-                    </div>
+                    </div> -->
                 {:catch e}
                     {e}
                 {/await}
