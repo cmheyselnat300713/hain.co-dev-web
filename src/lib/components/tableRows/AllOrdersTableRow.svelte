@@ -1,25 +1,29 @@
 <script lang="ts">
-    export let productCode    
-    export let customerEmail  
-    export let orderRequest   
-    export let orderDate      
-    export let staffUsername  
-    export let orderStatus    
-    export let orderNumber    
+    import moment from "moment";
+
+    export let productCode      : string
+    export let customerEmail    : string
+    export let orderRequest     : string
+    export let orderDate        : Date
+    export let staffUsername    : string
+    export let orderStatus      : number
+    export let orderNumber      : number
+
+    const oldTimeString = moment(orderDate).subtract(8, "hours").format("MM-DD-YYYY h:mma");
 </script>
 
 <tbody>
-    <tr class="text is-clickable">
-        <th>{orderNumber}</th>
-        <th>{productCode}</th>
-        <th>{customerEmail}</th>
-        <th>{orderRequest}</th>
-        <th>{new Date(orderDate).toLocaleString()}</th>
-        <th>{staffUsername}</th>
-        <th>
-           {orderStatus}
-        </th>
-    </tr>
+<tr class="text is-clickable">
+    <th>{orderNumber}</th>
+    <th>{productCode}</th>
+    <th>{customerEmail}</th>
+    <th>{orderRequest}</th>
+    <th>{oldTimeString}</th>
+    <th>{staffUsername}</th>
+    <th>
+        {orderStatus}
+    </th>
+</tr>
 </tbody>
 
 <style>

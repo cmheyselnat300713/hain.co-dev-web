@@ -47,7 +47,7 @@
                     </div>
                     <!-- today's amount -->
                     <div class="montserrat has-text-link txt-weight-900 txt-size-70">
-                        {revenue.day}
+                        {revenue.day.toFixed(2)}
                     </div>
                     <!-- this week's sales -->
                     <div class="montserrat has-text-black txt-size-30 w-100p pl-5">
@@ -55,7 +55,7 @@
                     </div>
                     <!-- this week's amount -->
                     <div class="montserrat has-text-black txt-size-40">
-                        {revenue.weeklyRevenue}
+                        {revenue.weeklyRevenue.toFixed(2)}
                     </div>
 
                 {:catch e}

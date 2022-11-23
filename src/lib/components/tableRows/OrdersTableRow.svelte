@@ -1,13 +1,16 @@
-<script>
+<script lang="ts">
+    // OrderTableRow.svelte
+
     import axios from '$lib/api/index';
     import { notifs } from '$lib/stores/notificationStore';
-    export let productCode
-    export let customerEmail
-    export let orderRequest
-    export let orderDate
-    export let staffUsername
-    export let orderStatus
-    export let orderNumber
+    import moment from "moment/moment.js";
+    export let productCode: string;
+    export let customerEmail: string;
+    export let orderRequest: string;
+    export let orderDate: Date;
+    export let staffUsername: string;
+    export let orderStatus: number;
+    export let orderNumber: number;
 
     let newStatus;
     let updating = false
@@ -43,40 +46,42 @@
             console.log(e)
         }
     }
+
+    const oldTimeString = moment(orderDate).subtract(8, "hours").format("MM-DD-YYYY h:mma");
 </script>
 
 <tbody>
-    <tr class="text is-clickable">
-        <th>{orderNumber}</th>
-        <th>{productCode}</th>
-        <th>{customerEmail}</th>
-        <th>{orderRequest}</th>
-        <th>{new Date(orderDate).toLocaleString()}</th>
-        <th>{staffUsername}</th>
-        <td>
-            <div class="select {updating ? 'is-loading' : ''} is-small">
-                <select bind:value={newStatus}
-                        on:change={updateOrderStatus}>
-                    {#if orderStatus === 1}
-                        <option selected disabled>INCOMING</option>
-                    {:else if orderStatus === 2}
-                        <option selected disabled>UNFULFILLED</option>
-                    {:else if orderStatus === 3}
-                        <option selected disabled>PROCESSING</option>
-                    {:else if orderStatus === 4}
-                        <option selected disabled>READY</option>
-                    {:else if orderStatus === 5}
-                        <option selected disabled>FULFILLED</option>
-                    {/if}
-                    <option value="1">INCOMING</option>
-                    <option value="2">UNFULFILLED</option>
-                    <option value="3">PROCESSING</option>
-                    <option value="4">READY</option>
-                    <option value="5">FULFILLED</option>
-                </select>
-            </div>
-        </td>
-    </tr>
+<tr class="text is-clickable">
+    <th>{orderNumber}</th>
+    <th>{productCode}</th>
+    <th>{customerEmail}</th>
+    <th>{orderRequest}</th>
+    <th>{oldTimeString}</th>
+    <th>{staffUsername}</th>
+    <td>
+        <div class="select {updating ? 'is-loading' : ''} is-small">
+            <select bind:value={newStatus}
+                    on:change={updateOrderStatus}>
+                {#if orderStatus === 1}
+                    <option selected disabled>INCOMING</option>
+                {:else if orderStatus === 2}
+                    <option selected disabled>UNFULFILLED</option>
+                {:else if orderStatus === 3}
+                    <option selected disabled>PROCESSING</option>
+                {:else if orderStatus === 4}
+                    <option selected disabled>READY</option>
+                {:else if orderStatus === 5}
+                    <option selected disabled>FULFILLED</option>
+                {/if}
+                <option value="1">INCOMING</option>
+                <option value="2">UNFULFILLED</option>
+                <option value="3">PROCESSING</option>
+                <option value="4">READY</option>
+                <option value="5">FULFILLED</option>
+            </select>
+        </div>
+    </td>
+</tr>
 </tbody>
 
 <style>

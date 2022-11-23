@@ -4,9 +4,9 @@
 
 <div class="columns has-background-link has-text-centered">
     <div class="column mt-2">
-        <p class="title is-1 has-text-white has-text-weight-light">
+        <a href="/Database"><p class="title is-1 has-text-white has-text-weight-light">
             Hain.co Admin
-        </p>
+        </p></a>
     </div>
 </div>
 

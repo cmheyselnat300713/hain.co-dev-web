@@ -18,7 +18,7 @@
         <th>{id}</th>
         <td>{agent}</td>
         <td>{description}</td>
-        <td>{amount}</td>
+        <td>{parseFloat(amount).toFixed(2)}</td>
         <td>{type}</td>
         <td>{oldTimeString}</td>
     </tr>
