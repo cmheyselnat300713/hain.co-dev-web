@@ -12,9 +12,9 @@
             <div class="card-image is-flex is-justify-content-center pt-4">
                 <img src={imagePath} alt="logo"/>
             </div>
-            <div class="card-content pt-3 pb-4">
-                <p class="text is-4 has-text-centered has-text-link">{name}</p>
-                <p class="text1 is-6 has-text-centered">{entries} {sub}</p>
+            <div class="card-content px-4">
+                <p class="text has-text-centered has-text-link">{name}</p>
+                <p class="text1 has-text-centered" style="max-width: 100%; min-width: 100%; text-overflow: ellipsis; overflow: hidden;">{entries} {sub}</p>
             </div>
         </div>
     </a>
