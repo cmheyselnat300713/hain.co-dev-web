@@ -12,7 +12,7 @@
     export let orderStatus: number;
     export let orderNumber: number;
 
-    let newStatus;
+    $: newStatus = `${orderStatus}`;
     let updating = false
 
     const updateOrderStatus = async () => {
@@ -28,6 +28,7 @@
                     type: 'success',
                     id: (Math.random() * 99) + 1
                 }]
+                orderStatus = newStatusInt;
             }else{
                 $notifs = [...$notifs, {
                     msg: `Updating order #${orderNumber} failed`,
@@ -59,25 +60,14 @@
     <th>{oldTimeString}</th>
     <th>{staffUsername}</th>
     <td>
-        <div class="select {updating ? 'is-loading' : ''} is-small">
-            <select bind:value={newStatus}
+        <div class="select {updating ? 'is-loading' : ''} is-small is-{orderStatus == 1 ? 'success' : orderStatus == 2 ? 'danger': orderStatus == 3 ? 'warning' : orderStatus == 4 ? 'info' : orderStatus == 5 ? 'grey-lighter' : ''}">
+            <select disabled={orderStatus == 2 || orderStatus == 5} class="{orderStatus == 1 ? 'has-background-success-light has-text-success-dark' : orderStatus == 2 ? 'has-background-danger-light has-text-danger-dark' : orderStatus == 3 ? 'has-background-warning-light has-text-warning-dark' : orderStatus == 4 ? 'has-background-info-light has-text-info-dark' : orderStatus == 5 ? 'has-background-grey-lighter has-text-grey-dark' : ''}" bind:value={newStatus}
                     on:change={updateOrderStatus}>
-                {#if orderStatus === 1}
-                    <option selected disabled>INCOMING</option>
-                {:else if orderStatus === 2}
-                    <option selected disabled>UNFULFILLED</option>
-                {:else if orderStatus === 3}
-                    <option selected disabled>PROCESSING</option>
-                {:else if orderStatus === 4}
-                    <option selected disabled>READY</option>
-                {:else if orderStatus === 5}
-                    <option selected disabled>FULFILLED</option>
-                {/if}
-                <option value="1">INCOMING</option>
-                <option value="2">UNFULFILLED</option>
-                <option value="3">PROCESSING</option>
-                <option value="4">READY</option>
-                <option value="5">FULFILLED</option>
+                <option hidden={orderStatus == 1} value="1">INCOMING</option>
+                <option hidden={orderStatus == 2} value="2">UNFULFILLED</option>
+                <option hidden={orderStatus == 3} value="3">PROCESSING</option>
+                <option hidden={orderStatus == 4} value="4">READY</option>
+                <option hidden={orderStatus == 5} value="5">FULFILLED</option>
             </select>
         </div>
     </td>
