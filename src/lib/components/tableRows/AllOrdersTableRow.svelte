@@ -13,7 +13,7 @@
 </script>
 
 <tbody>
-<tr class="text is-clickable">
+<tr class="text">
     <th>{orderNumber}</th>
     <th>{productCode}</th>
     <th>{customerEmail}</th>

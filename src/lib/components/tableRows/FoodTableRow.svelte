@@ -10,7 +10,7 @@
 </script>
 
 <tbody>
-    <tr class="text is-clickable">
+    <tr class="text">
         <th>{num}</th>
         <td>{productName}</td>
         <td>{parseFloat(price).toFixed(2)}</td>

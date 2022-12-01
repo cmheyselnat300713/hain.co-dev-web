@@ -9,7 +9,7 @@
 </script>
 
 <tbody>
-    <tr class="text is-clickable">
+    <tr class="text">
         <th>{num}</th>
         <td>{name}</td>
         <td>{position}</td>
