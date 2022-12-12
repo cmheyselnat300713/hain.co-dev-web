@@ -1,12 +1,11 @@
 <script lang="ts">
-    import Discard from "$lib/components/buttons/Discard.svelte";
     import NavbarSolo from "$lib/components/navbars/NavbarSolo.svelte";
     import ButtonBack from "$lib/components/buttons/ButtonBack.svelte";
     import axios from "$lib/api";
     import {goto} from "$app/navigation";
     import { notifs } from "$lib/stores/notificationStore";
     import NotificationContainer from "$lib/components/systemNotification/notification-container.svelte";
-  import validators from "$lib/validators";
+    import validators from "$lib/validators";
 
     let customer = {
         customerFirstName: null,
@@ -130,9 +129,6 @@
             <p class="text1 has-text-link">
                 New Customer
             </p>
-        </div>
-        <div class="column is-3 ml-6">
-            <Discard link="../Customers"/>
         </div>
     </div>
 

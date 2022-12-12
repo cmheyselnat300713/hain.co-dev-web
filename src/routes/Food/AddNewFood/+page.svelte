@@ -1,5 +1,4 @@
 <script>
-    import Discard from "$lib/components/buttons/Discard.svelte";
     import NavbarSolo from "$lib/components/navbars/NavbarSolo.svelte";
     import ButtonBack from "$lib/components/buttons/ButtonBack.svelte";
     import axios from "$lib/api/index";
@@ -109,9 +108,6 @@
             <p class="text has-text-link">
                 New Product
             </p>
-        </div>
-        <div class="column is-3 ml-6">
-            <Discard link="../Food"/>
         </div>
     </div>
 

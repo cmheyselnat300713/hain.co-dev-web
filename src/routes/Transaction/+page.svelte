@@ -45,7 +45,7 @@
         </div>
         <div class="column is-4">
             <p class="text has-text-link has-text-weight-bold">
-                Transactions
+                Audit Logs
             </p>
         </div>
         <div class="column is-4 has-text-centered">

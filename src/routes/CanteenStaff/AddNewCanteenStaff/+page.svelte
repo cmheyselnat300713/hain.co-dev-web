@@ -1,6 +1,5 @@
 <script>
     import ButtonBack from "$lib/components/buttons/ButtonBack.svelte";
-    import Discard from "$lib/components/buttons/Discard.svelte";
     import NavbarSolo from "$lib/components/navbars/NavbarSolo.svelte";
     import axios from "$lib/api";
     import {goto} from "$app/navigation";
@@ -125,9 +124,6 @@
             <p class="text1 has-text-link">
                 New Canteen Staff
             </p>
-        </div>
-        <div class="column is-3 ml-6">
-            <Discard link="../CanteenStaff"/>
         </div>
     </div>
 

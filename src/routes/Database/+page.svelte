@@ -24,7 +24,7 @@
 
 <div class="container">
     <p class="text has-text-centered has-text-link has-text-weight-bold mt-5">
-        Database
+        Dashboard
     </p>
 
     <div class="columns is-0 mt-3 is-centered">
@@ -93,7 +93,7 @@
                           sub="orders"
                           imagePath="images/ordersIcon.png"
                           link="Orders"/>
-                    <Card name="Transactions"
+                    <Card name="Audit Logs"
                           entries={row_count.transaction}
                           sub="entries"
                           imagePath="images/transactionIcon.png"
