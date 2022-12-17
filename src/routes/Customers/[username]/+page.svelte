@@ -182,7 +182,7 @@
             </div>
             <div class="column is-3 is-offset-2">
                 <p class="pText has-text-link ml-4 mb-1">
-                    <span>*</span>  Password: {customerDetails.customer_password}
+                    <span>*</span>  Password:
                 </p>
                 <input class="pText input is-rounded" type="password" bind:value={newCustomer.customerPassword}/>
             </div>
